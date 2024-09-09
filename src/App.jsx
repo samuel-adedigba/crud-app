@@ -17,13 +17,13 @@ function App() {
           path="/"
           element={
             isPass ? (
-              <Dashboard setDashboardPass={setAdminPass} /> //if admin auth is true dashboard component will execute
+              <Dashboard setAminPass={setAdminPass} /> //if admin auth is true dashboard component will execute
             ) : (
-              <Login setLoginPass={setAdminPass} /> // if false Login-page component will come in. passed in props from login component is setLoginPass(set to execute code[setAdminPass] that checks the admin auth)
+              <Login setAdminPass={setAdminPass} /> // if false Login-page component will come in. passed in props from login component is setLoginPass(set to execute code[setAdminPass] that checks the admin auth)
             )
           }
         />
-        <Route path="/login" element={<Login setLoginPass={setAdminPass} />} />
+        <Route path="/login" element={<Login setAdminPass={setAdminPass} />} />
       </Routes>
     </Router>
 

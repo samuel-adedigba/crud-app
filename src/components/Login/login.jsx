@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const Login = ({ setLoginPass }) => {
+const Login = ({ setAdminPass }) => {
   const myEmail = "samueladedigba@gmail.com";
   const myPassword = "blaze";
 
@@ -20,7 +20,7 @@ const Login = ({ setLoginPass }) => {
         },
         willClose: () => {
           localStorage.setItem("adminpass", true);
-          setLoginPass(true);
+          setAdminPass(true);
           Swal.fire({
             title: "Login Successful",
             icon: "success",
@@ -40,7 +40,7 @@ const Login = ({ setLoginPass }) => {
         },
         willClose: () => {
           localStorage.setItem("adminpass", false);
-          setLoginPass(false);
+          setAdminPass(false);
           Swal.fire({
             icon: "error",
             text: "Incorrect Username / Password",

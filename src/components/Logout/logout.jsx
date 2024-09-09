@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-const Logout = ({ setLoginPass }) => {
+const Logout = ({ setAdminPass }) => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     Swal.fire({
       icon: 'question',
@@ -18,8 +22,9 @@ const Logout = ({ setLoginPass }) => {
             Swal.showLoading();
           },
           willClose: () => {
-            localStorage.setItem('adminpass', false);
-            setLoginPass(false);
+            localStorage.removeItem('adminpass', false);
+            setAdminPass(false);
+            navigate("/login")
           },
         });
       }
