@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 const Logout = ({ setAdminPass }) => {
-  const navigate = useNavigate();
   const handleLogout = () => {
     Swal.fire({
       icon: 'question',
       title: 'Logging Out',
-      text: 'Are you sure you want to log out?',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
+      text: 'Are you sure you want to log out?',     
+      confirmButtonText: 'Yes',      
     }).then(result => {
       if (result.value) {
         Swal.fire({
@@ -24,7 +22,6 @@ const Logout = ({ setAdminPass }) => {
           willClose: () => {
             localStorage.removeItem('adminpass', false);
             setAdminPass(false);
-            navigate("/login")
           },
         });
       }
@@ -33,7 +30,6 @@ const Logout = ({ setAdminPass }) => {
 
   return (
     <button
-      style={{ marginLeft: '12px' }}
       className="muted-button"
       onClick={handleLogout}
     >

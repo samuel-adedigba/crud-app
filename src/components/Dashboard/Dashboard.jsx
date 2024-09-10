@@ -4,11 +4,13 @@ import Header from "./Header";
 import Table from "./Table";
 import Add from "./Add";
 import { employeesData } from "../../Data/data";
-const Dashboard = () => {
+const Dashboard = ( {setAdminPass}) => {
   const [addEmployee, setAddEmployee] = useState(false); // brings out the form for either edit or update
   const [allEmployee, setAllEmployee] = useState(
     JSON.parse(localStorage.getItem("list_employees")) || employeesData
-  ); //saves all employee data
+  ); 
+  
+  //saves all employee data
   const [previousState, setPreviousState] = useState([]);
   const [isEditing, setIsEditing] = useState(false); //makes it possible to edit or not
   const [currentEmployee, setCurrentEmployee] = useState(null); //saves the edited /selected employee id
@@ -20,11 +22,7 @@ const Dashboard = () => {
     localStorage.setItem("list_employees", JSON.stringify(updatedEmployees));
     setAddEmployee(false);
   };
-  // useEffect(() => {
-  //   const stored_data = JSON.parse(localStorage.getItem("list_employees"));
-  //   if (stored_data.length > 0) setAllEmployee(stored_data);
-  // }, []);
-
+ 
   //this function updates the edited employee data with the existing ones and then stores/persist it back
   //this is possible when the edit button is being clicked
   const handleUpdateEmployee = (updatedData) => {
@@ -82,7 +80,7 @@ const Dashboard = () => {
   };
   return (
     <div>
-      <Header setAddEmployee={setAddEmployee} handleUndo={handleUndo} />
+      <Header setAddEmployee={setAddEmployee} handleUndo={handleUndo}  setAdminPass={setAdminPass}/>
       {!addEmployee && !isEditing ? ( // no employees mode and edit mode, make table comp. visible
         <Table
           allEmployee={allEmployee}
