@@ -4,23 +4,23 @@ import Header from "./Header";
 import Table from "./Table";
 import Add from "./Add";
 import { employeesData } from "../../Data/data";
+
+
 const Dashboard = ( {setAdminPass}) => {
   const [addEmployee, setAddEmployee] = useState(false); // brings out the form for either edit or update
   const [allEmployee, setAllEmployee] = useState(
     JSON.parse(localStorage.getItem("list_employees")) || employeesData
-  ); 
-  
-  //saves all employee data
-  const [previousState, setPreviousState] = useState([]);
+  ); //saves all employee data  
+  const [previousState, setPreviousState] = useState([]); //saves the data for previous value state for allEmployees
   const [isEditing, setIsEditing] = useState(false); //makes it possible to edit or not
-  const [currentEmployee, setCurrentEmployee] = useState(null); //saves the edited /selected employee id
+  const [currentEmployee, setCurrentEmployee] = useState(null); //saves the edited/selected employee id
 
   const handleAddEmployees = (newEmployee) => {
     setPreviousState(allEmployee);
     const updatedEmployees = [...allEmployee, newEmployee];
     setAllEmployee(updatedEmployees);
-    localStorage.setItem("list_employees", JSON.stringify(updatedEmployees));
-    setAddEmployee(false);
+    localStorage.setItem("list_employees", JSON.stringify(updatedEmployees)); //persist storage
+    setAddEmployee(false); //close add employee form
   };
  
   //this function updates the edited employee data with the existing ones and then stores/persist it back
@@ -28,8 +28,7 @@ const Dashboard = ( {setAdminPass}) => {
   const handleUpdateEmployee = (updatedData) => {
     setPreviousState(allEmployee);
     const updatedEmployees = allEmployee.map((e) =>
-      e.id === updatedData.id ? updatedData : e
-    );
+      e.id === updatedData.id ? updatedData : e    );
     setAllEmployee(updatedEmployees);
     localStorage.setItem("list_employees", JSON.stringify(updatedEmployees));
     setIsEditing(false);
